@@ -7,7 +7,7 @@ import UserDetails from "./UserDetails";
 const App = () => {
 
   const users = [
-    {id: 1, name: "John Doe", age: 28, email:"John@example.com"},
+    {id: 1, name: "Leanne Graham", age: 28, email:"John@example.com"},
     {id:2, name: "Jane Smith", age:33, email:"Jane@example.com"},
     {id:3, name: "Sam Wilson" , age:33, email:"surend@example.com"},
   ]
