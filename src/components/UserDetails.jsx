@@ -12,9 +12,9 @@ if(!user){
   return (
     <div>
       <h2>User Details</h2>
-      <p><strong>Name:</strong></p>
-      <p><strong>Age:</strong></p>
-      <p><strong>Email:</strong></p>
+      <p><strong>Name:</strong>{user.name}</p>
+      <p><strong>Age:</strong>{user.age}</p>
+      <p><strong>Email:</strong>{user.email}</p>
     </div>
   )
 }

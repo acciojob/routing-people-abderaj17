@@ -13,13 +13,14 @@ const App = () => {
   ]
   return (
  
-    
-   <BrowserRouter>
+    <Router>
+ 
    <Routes>
-    <Route path="/" element={<UserList /> }/>
-    <Route path="/user/:id" element={<UserDetails/>}/>
+    <Route path="/" element={<UserList users={users } /> }/>
+    <Route path="/user/:id" element={<UserDetails users={users}/>}/>
    </Routes>
-   </BrowserRouter>
+   </Router>
+  
   )
 }
 
