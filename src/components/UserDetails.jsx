@@ -7,16 +7,19 @@ function UserDetails() {
   const [loading, setLoading] = useState(true); // State for loading status
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUser(data); // Set fetched user data to state
-        setLoading(false); // Set loading to false after data is fetched
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-        setLoading(false); // Stop loading even if there's an error
-      });
+    // Simulating a slow network request by adding a delay
+    setTimeout(() => {
+      fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setUser(data); // Set fetched user data to state
+          setLoading(false); // Set loading to false after data is fetched
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          setLoading(false); // Stop loading even if there's an error
+        });
+    }, 1000); // Simulated delay of 1 second
   }, [id]);
 
   // Show loading message only when loading is true
