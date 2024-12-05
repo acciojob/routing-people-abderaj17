@@ -1,31 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const UserDetails = () => {
-  const {id} = useParams();
-  const [user, setUser] = useState(null);
+function UserDetails() {
+  const { id } = useParams(); // Get user ID from URL params
+  const [user, setUser] = useState(null); // State to store user data
+  const [loading, setLoading] = useState(true); // State for loading status
 
-  useEffect(()=>{
+  useEffect(() => {
+    // Fetch user details from API
     fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-    .then((response)=> response.json())
-    .then((data)= setUser(data))
-    .catch((error)=> console.error("Error fetching user details:", error))
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data); // Set fetched user data to state
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        setLoading(false); // Stop loading even if there's an error
+      });
   }, [id]);
 
-  if(!user){
-    return <p>Loading user datails....</p>
+  // Display loading message while data is being fetched
+  if (loading) {
+    return <p>Loading...</p>;
   }
+
+  // Display user details once data is fetched
   return (
     <div>
-     <h1>User Details</h1>
-     <p><strong>Name:</strong>{user.name}</p>      
-     <p><strong>Email:</strong>{user.email}</p>      
-     <p><strong>Phone:</strong>{user.phone}</p>      
-     <p><strong>Website:</strong>{user.website}</p>      
-     <p><strong>company:</strong>{user.company}</p>      
-     <p><strong>Address</strong>{user.address}</p>      
+      {user ? (
+        <>
+          <h1>User Details</h1>
+          <p><strong>Name:</strong> {user.name}</p>
+          <p><strong>Email:</strong> {user.email}</p>
+          <p><strong>Phone:</strong> {user.phone}</p>
+          <p><strong>Website:</strong> {user.website}</p>
+        </>
+      ) : (
+        <p>User not found.</p>
+      )}
     </div>
-  )
+  );
 }
 
-export default UserDetails
+export default UserDetails;
