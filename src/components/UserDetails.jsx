@@ -19,10 +19,12 @@ function UserDetails() {
       });
   }, [id]);
 
+  // Show loading message only when loading is true
   if (loading) {
-    return <div>Loading...</div>;
+    return <p>Loading...</p>;
   }
 
+  // Render user details once data is fetched
   return (
     <div>
       {user ? (
